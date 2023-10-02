@@ -1,0 +1,105 @@
+git init -- to initialize a git project on a local folder
+
+let's add a simple text file notes.txt
+
+git status -- shows the current status of the local folder
+
+untracked files are the ones which are not included in the version control history 
+in our example notes.txt is shown in the untracked files
+
+
+git add . -- currently all untracked files are put in staging area
+
+git add notes.txt -- only notes.txt is put in stage
+
+now notes.txt is shown in the tracked (or in stage) 
+
+let's add one more file .. secondfile.txt
+
+this time in addition to notes.txt we will get secondfile.txt in the untracked files. 
+
+-- let's remove secondfile.txt as it is not needed. 
+
+
+
+git commit -m 'first draft notes'
+
+let's try unstage 
+
+add another file thirdfile.txt 
+
+git add thirdfile.txt -- this will add the file in stage 
+
+to confirm do git status
+
+git restore --staged thirdfile.txt -- this will unstage thirdfile.txt
+
+to confirm do git status 
+
+now to see the history of all commits we can do 
+git log
+
+now let's try to rollback commits 
+
+first add another file fourthfile.txt, stage and commit it. 
+we then modified the notes and committed the changes.
+
+now when we do git log . we see 3 commits with their hashes.
+
+to rollback to let's  say first commit we can do (copy the commit's hash)
+
+git reset '<paste the hash>' 
+
+after we paste the hash the changes committed after this hash are all sent to the unstaged area. 
+
+now lets try to use stash 
+
+add a file 'teststash.txt' and add it to staging area
+
+now do 
+
+git stash
+
+this will take the file from staging area to stash and if we do git status now basically no file will be shown in the staging area. 
+
+do note that git stash has effect on only files in the stage area, meaning if we had any unstaged files before running git stash, they will not be impacted and will continue to remain in unstaged. 
+
+to bring back stashed changes 
+
+git stash pop
+
+as expected this brings back the stashed changes from stash to staged area directly.
+
+to simply empty the stash we can do 
+
+git stash clear
+------------------------------------------------------
+working with github 
+------------------------------------------------------
+
+git remote add origin https://github.com/mdsalmankhan89/gitlearing
+
+breaking down this command -
+remote- means we are working with remote repos
+add - adding a url
+origin - is an alias for the (remote repo) url to be added.. this can be anything, however 'origin' is used by convention
+
+git remote -v
+
+lists all remote repos attached with the local folder
+
+-- let's try to move the local folder's changes into the remote repo
+
+git push origin master -- this pushes 'master' branch changes into 'origin'
+
+----- 
+what are branches? 
+
+git checkout <branch> -- basically moves the HEAD (pointer) to the branch 
+
+git clone <url> -- clones a remote repo
+
+forking allows us to get a copy of another github repo into our another account. 
+
+
+
