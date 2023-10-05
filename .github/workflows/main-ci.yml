@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+        #install python
+        #list all files
+        #create a new file
+        #list all files
+    - uses: actions/checkout@v3
+
+    - name: List all original files
+      run: ls 
+    
+    - name: Install python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10' 
+
+    - name: Run Python Script
+      run: py create-file.py
+    
+    - name: List all new files
+      run: ls 
+
