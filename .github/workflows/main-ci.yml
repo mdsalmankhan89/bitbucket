@@ -29,4 +29,6 @@ jobs:
     
     - name: List all new files
       run: ls 
-
+    
+    - name: List all new files
+      run: cat read_me.txt  
