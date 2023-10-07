@@ -1,0 +1,31 @@
+name: custom-env-vars-ci
+
+on:
+  push:
+    branches: [ "test-custom-var" ]
+
+  workflow_dispatch:
+  
+  # this is the job name  
+jobs:
+    display:
+      runs-on: ubuntu-latest
+      env:
+        platform: Azure
+        region: Central
+        profile_path: profile/
+    
+      steps:
+      - name: Display custom environment variables
+
+        # the format like $region is only valid if used in run command for other places use format ${{env.platform}/}  
+        # for eg in if (which is not in run as below) we cannot use $region directly
+        # while inside run block both formats are valid
+
+        if: ${{env.region == 'Central'}} 
+        run: |
+          echo "The platform is ${{env.platform}}"
+          echo "The region is $profile_path"
+
+
+ 
