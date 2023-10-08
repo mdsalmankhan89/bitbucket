@@ -1,0 +1,35 @@
+name: output_demo_2
+
+on:
+    workflow_dispatch:
+
+jobs:
+    job1:
+        runs-on: ubuntu-latest
+        #maps a step output to a job output
+
+        outputs:
+            output1: ${{steps.contents.outputs.data}}
+
+        steps:
+            - name: checkout branch
+              uses: actions/checkout@v2
+
+            - name: setup python
+              uses: actions/setup-python@v2
+              with:
+                python-version: '3.9'
+            
+            - name : run python script
+              id: contents
+              run: |
+                python create-file.py
+                contents= $( cat read_me.txt)
+                echo "set-output name=data::$contents"
+    
+    job2:
+        needs: job1
+        runs-on: ubuntu-latest
+        steps:
+            - run:
+                 echo "${{needs.job1.outputs.output1}}"
