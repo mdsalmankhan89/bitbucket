@@ -32,3 +32,18 @@ jobs:
     
     - name: List all new files
       run: cat read_me.txt  
+
+  display:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: print a value
+      run: echo Just another job
+
+  conditional:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: print another value
+      run: echo yet another job
