@@ -22,10 +22,7 @@ jobs:
             
             - name : run python script
               id: contents
-              run: |
-                python create-file.py 
-                contents= $(cat read_me.txt)
-                echo "set-output name=data::$contents"
+              run: python create-file.py 
     
     job2:
         needs: job1
