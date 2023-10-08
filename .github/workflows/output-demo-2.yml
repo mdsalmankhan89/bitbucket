@@ -22,7 +22,9 @@ jobs:
             
             - name : run python script
               id: contents
-              run: python create-file.py 
+              run: |
+                  python create-file.py
+                  contents= $(cat read_me.txt)
     
     job2:
         needs: job1
