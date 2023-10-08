@@ -34,7 +34,7 @@ jobs:
       run: cat read_me.txt  
 
   display:
-
+    needs: build
     runs-on: ubuntu-latest
     
     steps:
@@ -43,7 +43,8 @@ jobs:
 
   conditional:
     runs-on: ubuntu-latest
-    
+    needs: [build,display]
+
     steps:
     - name: print another value
       run: echo yet another job
