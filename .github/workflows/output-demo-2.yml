@@ -13,18 +13,18 @@ jobs:
 
         steps:
             - name: checkout branch
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
 
             - name: setup python
-              uses: actions/setup-python@v2
+              uses: actions/setup-python@v4
               with:
-                python-version: '3.9'
+                python-version: '3.10'
             
             - name : run python script
               id: contents
               run: |
-                python create-file.py
-                contents= $( cat read_me.txt)
+                python create-file.py 
+                contents= $(cat read_me.txt)
                 echo "set-output name=data::$contents"
     
     job2:
