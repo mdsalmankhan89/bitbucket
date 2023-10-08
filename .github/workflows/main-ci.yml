@@ -26,7 +26,8 @@ jobs:
 
     - name: Run Python Script
         #lets call create-file-2 to fail this job and test dependent jobs
-      run: python create-file-2.py 
+      run: python create-file.py 
+      #run: python create-file-2.py 
     
     - name: List all new files
       run: ls 
@@ -36,6 +37,7 @@ jobs:
 
   display:
     needs: build
+    # this does not trigger if build job fails 
     runs-on: ubuntu-latest
     
     steps:
@@ -44,6 +46,7 @@ jobs:
 
   conditional:
     runs-on: ubuntu-latest
+    # this does not trigger if build job fails 
     needs: [build,display]
 
     steps:
@@ -52,6 +55,7 @@ jobs:
 
   completion:
     runs-on: ubuntu-latest
+    # this does trigger even if build job fails and subsequently display job is not even triggered
     if: always()
     needs: [build,display]
 
