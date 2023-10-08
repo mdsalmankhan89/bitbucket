@@ -21,8 +21,8 @@ jobs:
             
             - id: step3
               run: |
-                tagvar = test12345
-                echo "::set-output name=test::$tagvar"
+                tagvar=test12345
+                echo "::set-output name=tagname::$tagvar"
     job2:
         runs-on: ubuntu-latest
         needs: job1
