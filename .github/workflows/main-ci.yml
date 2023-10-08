@@ -47,4 +47,13 @@ jobs:
 
     steps:
     - name: print another value
-      run: echo yet another job
+      run: echo another dependent job requiring successful completion
+
+  completion:
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [build,display]
+
+    steps:
+    - name: print yet another value
+      run: echo another dependent job requiring just completion not success
